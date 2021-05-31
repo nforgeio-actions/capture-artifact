@@ -62,8 +62,8 @@ try
     #
     #   1. Pull the artifacts repo
     #   2. Copy the file to the repo, creating the folder if necessary
-    #   3. Commit the change
-    #   4. Stage the changes 
+    #   3. Stage the changes 
+    #   4. Commit the change
     #   5. Push the repo
 
     Push-Cwd $naRoot | Out-Null
@@ -73,8 +73,8 @@ try
         [System.IO.Directory]::CreateDirectory($targetFolder) | Out-Null
         [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
 
-        Invoke-CaptureStreams "git commit --quiet --all --message `"capture artifact`""
         Invoke-CaptureStreams "git add --quiet --all"
+        Invoke-CaptureStreams "git commit --quiet --all --message `"capture artifact`""
         Invoke-CaptureStreams "git push --quiet"
 
     Pop-Cwd | Out-Null
