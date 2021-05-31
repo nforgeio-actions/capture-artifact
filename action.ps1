@@ -63,7 +63,8 @@ try
     #   1. Pull the artifacts repo
     #   2. Copy the file to the repo, creating the folder if necessary
     #   3. Commit the change
-    #   4. Push the repo
+    #   4. Pull any repo changes that somebody else just pushed 
+    #   5. Push the repo
 
     Push-Cwd $naRoot | Out-Null
 
@@ -74,6 +75,9 @@ try
         [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
 
         git commit --all --message "capture artifact" | Out-Null
+        ThrowOnExitCode
+
+        git pull | Out-Null
         ThrowOnExitCode
 
         git push | Out-Null
