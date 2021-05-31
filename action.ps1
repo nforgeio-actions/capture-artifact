@@ -55,7 +55,7 @@ try
     $utcNow       = [System.DateTime]::UtcNow
     $timestamp    = $utcNow.ToString("yyyy-MM-ddThh_mm_ssZ")
     $targetFolder = [System.IO.Path]::Combine($naRoot, $folder)
-    $tagetName    = "$timestamp-$name"
+    $targetName   = "$timestamp-$name"
     $targetPath   = [System.IO.Path]::Combine($targetFolder, $targetName)
 
     # Here's what we're going to do:
