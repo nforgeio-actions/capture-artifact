@@ -63,7 +63,7 @@ try
     #   1. Pull the artifacts repo
     #   2. Copy the file to the repo, creating the folder if necessary
     #   3. Commit the change
-    #   4. Pull any repo changes that somebody else just pushed 
+    #   4. Stage the changes 
     #   5. Push the repo
 
     Push-Cwd $naRoot | Out-Null
@@ -74,7 +74,7 @@ try
         [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
 
         Invoke-CaptureStreams "git commit --quiet --all --message `"capture artifact`""
-        Invoke-CaptureStreams "git pull --quiet"
+        Invoke-CaptureStreams "git add --quiet --all"
         Invoke-CaptureStreams "git push --quiet"
 
     Pop-Cwd | Out-Null
