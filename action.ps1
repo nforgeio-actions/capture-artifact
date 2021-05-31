@@ -73,7 +73,7 @@ try
         [System.IO.Directory]::CreateDirectory($targetFolder) | Out-Null
         [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
 
-        Invoke-CaptureStreams "git add --quiet --all"
+        Invoke-CaptureStreams "git add --all"
         Invoke-CaptureStreams "git commit --quiet --all --message `"capture artifact`""
         Invoke-CaptureStreams "git push --quiet"
 
