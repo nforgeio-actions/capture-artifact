@@ -62,7 +62,8 @@ try
     #
     #   1. Pull the artifacts repo
     #   2. Copy the file to the repo, creating the folder if necessary
-    #   3. Push the repo
+    #   3. Commit the change
+    #   4. Push the repo
 
     Push-Cwd $naRoot | Out-Null
 
@@ -71,6 +72,9 @@ try
 
         [System.IO.Directory]::CreateDirectory($targetFolder) | Out-Null
         [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
+
+        git commit --all --message "capture artifact" | Out-Null
+        ThrowOnExitCode
 
         git push | Out-Null
         ThrowOnExitCode
