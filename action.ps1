@@ -74,8 +74,9 @@ Write-Info "*** 3:"
         ThrowOnExitCode
 Write-Info "*** 4:"
 
-        [System.IO.Directory]::CreateDirectory($targetFolder)
-        [System.IO.File]::Copy($path, $targetPath, $true)
+        [System.IO.Directory]::CreateDirectory($targetFolder) | Out-Null
+Write-Info "*** 4A:"
+        [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
 Write-Info "*** 5:"
 
         git push | Out-Null
