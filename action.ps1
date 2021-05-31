@@ -55,7 +55,8 @@ try
     $utcNow       = [System.DateTime]::UtcNow
     $timestamp    = $utcNow.ToString("yyyy-MM-ddThh_mm_ssZ")
     $targetFolder = [System.IO.Path]::Combine($naRoot, $folder)
-    $targetPath   = [System.IO.Path]::Combine($targetFolder, "$timestamp-$name")
+    $tagetName    = "$timestamp-$name"
+    $targetPath   = [System.IO.Path]::Combine($targetFolder, $targetName)
 
     # Here's what we're going to do:
     #
@@ -75,6 +76,10 @@ try
         ThrowOnExitCode
 
     Pop-Cwd | Out-Null
+
+    # Return the artifact URI
+
+    Set-ActionOutput "artifact-uri" "https://github.com/nforgeio/artifacts/$folder/$targetName"
 }
 catch
 {
