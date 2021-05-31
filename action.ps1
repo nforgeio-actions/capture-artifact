@@ -68,20 +68,14 @@ try
 
     Push-Cwd $naRoot | Out-Null
 
-        git pull | Out-Null
-        ThrowOnExitCode
+        Invoke-CaptureStreams "git pull"
 
         [System.IO.Directory]::CreateDirectory($targetFolder) | Out-Null
         [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
 
-        git commit --all --message "capture artifact" | Out-Null
-        ThrowOnExitCode
-
-        git pull | Out-Null
-        ThrowOnExitCode
-
-        git push | Out-Null
-        ThrowOnExitCode
+        Invoke-CaptureStreams "git commit --all --message `"capture artifact`""
+        Invoke-CaptureStreams "git pull"
+        Invoke-CaptureStreams "git push"
 
     Pop-Cwd | Out-Null
 
