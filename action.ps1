@@ -46,17 +46,20 @@ try
     }
 
     # Generate the target file name, with a timestamp prefix
+Write-Info "*** 0:"
 
     if ([System.String]::IsNullOrEmpty($name))
     {
         $name = [System.IO.Path]::GetFileName($path)
     }
+Write-Info "*** 1:"
 
     $utcNow       = [System.DateTime]::UtcNow
     $timestamp    = $utcNow.ToString("yyyy-MM-ddThh_mm_ssZ")
     $targetFolder = [System.IO.Path]::Combine($naRoot, $folder)
     $targetName   = "$timestamp-$name"
     $targetPath   = [System.IO.Path]::Combine($targetFolder, $targetName)
+Write-Info "*** 2:"
 
     # Here's what we're going to do:
     #
@@ -65,21 +68,27 @@ try
     #   3. Push the repo
 
     Push-Cwd $naRoot | Out-Null
+Write-Info "*** 3:"
 
         git pull | Out-Null
         ThrowOnExitCode
+Write-Info "*** 4:"
 
         [System.IO.Directory]::CreateDirectory($targetFolder)
         [System.IO.File]::Copy($path, $targetPath, $true)
+Write-Info "*** 5:"
 
         git push | Out-Null
         ThrowOnExitCode
+Write-Info "*** 6:"
 
     Pop-Cwd | Out-Null
+Write-Info "*** 7:"
 
     # Return the artifact URI
 
     Set-ActionOutput "artifact-uri" "https://github.com/nforgeio/artifacts/$folder/$targetName"
+Write-Info "*** 8:"
 }
 catch
 {
