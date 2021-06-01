@@ -85,7 +85,6 @@ try
     # Return the artifact URI
 
     Set-ActionOutput "artifact-uri" "https://github.com/nforgeio/artifacts/$folder/$targetName"
-Write-Info "***CAPTURE-ARTIFACT: artifact-uri: https://github.com/nforgeio/artifacts/$folder/$targetName"
 }
 catch
 {
