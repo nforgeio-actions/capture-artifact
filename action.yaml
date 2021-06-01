@@ -21,7 +21,7 @@ inputs:
     required: false
     default: ""
 outputs:
-  artifact-uri:
+  uri:
     description: "Returns as the URI to the uploaded file"
 runs:
   using: node12

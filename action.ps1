@@ -84,7 +84,7 @@ try
 
     # Return the artifact URI
 
-    Set-ActionOutput "artifact-uri" "https://github.com/nforgeio/artifacts/blob/master/$folder/$targetName"
+    Set-ActionOutput "uri" "https://github.com/nforgeio/artifacts/blob/master/$folder/$targetName"
 }
 catch
 {
