@@ -13,11 +13,11 @@ inputs:
   path:
     description: "The local path to the file to be uploaded"
     required: true
-  folder:
+  target-folder:
     description: "Specifies target folder within the nforgeio/artifacts repo"
     required: true
-  name:
-    description: "Optionally specifies the target file name, overriding the local name"
+  target-name:
+    description: "Optionally specifies the target file name within thr repo folder, overriding the local name"
     required: false
     default: ""
 outputs:

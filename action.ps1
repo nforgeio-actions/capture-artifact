@@ -35,9 +35,9 @@ try
 {   
     # Fetch the inputs
       
-    $path   = Get-ActionInput "path"   $true
-    $folder = Get-ActionInput "folder" $true
-    $name   = Get-ActionInput "name"   $false
+    $path   = Get-ActionInput "path"          $true
+    $folder = Get-ActionInput "target-folder" $true
+    $name   = Get-ActionInput "target-name"   $false
 
     if (![System.IO.File]::Exists($path))
     {
