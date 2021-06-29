@@ -82,8 +82,8 @@ try
         # $todo(jefflill):
         #
         # It's possible that another workflow has pushed changes to the
-        # repo since we pulled above.  We'll detect this situation (once) and 
-        # re-pull the repo before trying again.
+        # repo since the pull operation.  We'll detect this situation (once)
+        # and re-pull the repo before trying again.
         #
         # It would be nicer to abstract these repo operations into a couple 
         # Powershell functions.

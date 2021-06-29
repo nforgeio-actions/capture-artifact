@@ -22,7 +22,7 @@ inputs:
     default: ""
 outputs:
   uri:
-    description: "Returns as the URI to the uploaded file"
+    description: "Returns as the URI to the uploaded artifact"
 runs:
   using: node12
   main: action.js
