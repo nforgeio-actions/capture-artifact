@@ -59,7 +59,7 @@ try
     $targetPath   = [System.IO.Path]::Combine($targetFolder, $targetName)
 Log-DebugLine "CAPTURE 0: path:         $path"
 Log-DebugLine "CAPTURE 0: targetFolder: $targetFolder"
-Log-DebugLine "CAPTURE 0: targetFolder: $targetFolder"
+Log-DebugLine "CAPTURE 0: targetName:   $targetName"
 Log-DebugLine "CAPTURE 0: targetPath:   $targetPath"
 
     # Here's what we're going to do:
@@ -73,19 +73,21 @@ Log-DebugLine "CAPTURE 0: targetPath:   $targetPath"
 
     Push-Cwd $naRoot | Out-Null
 
-        Invoke-CaptureStreams "git reset --quiet --hard" | Out-Null
-        Invoke-CaptureStreams "git fetch --quiet" | Out-Null
+        Invoke-CaptureStreams "git reset --quiet --hard"    | Out-Null
+        Invoke-CaptureStreams "git fetch --quiet"           | Out-Null
         Invoke-CaptureStreams "git checkout --quiet master" | Out-Null    
-        Invoke-CaptureStreams "git pull --quiet" | Out-Null
+        Invoke-CaptureStreams "git pull --quiet"            | Out-Null
 
 Log-DebugLine "CAPTURE 1:"
         [System.IO.Directory]::CreateDirectory($targetFolder) | Out-Null
 Log-DebugLine "CAPTURE 2:"
-        [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
+        [System.IO.File]::Copy($path, $targetPath, $true)     | Out-Null
 Log-DebugLine "CAPTURE 3:"
 
-        Invoke-CaptureStreams "git add --all" | Out-Null
+        Invoke-CaptureStreams "git add --all"                                           | Out-Null
+Log-DebugLine "CAPTURE 4:"
         Invoke-CaptureStreams "git commit --quiet --all --message `"capture artifact`"" | Out-Null
+Log-DebugLine "CAPTURE 5:"
 
         # $todo(jefflill):
         #
@@ -97,11 +99,15 @@ Log-DebugLine "CAPTURE 3:"
         # Powershell functions.
 
         $result = Invoke-CaptureStreams "git push --quiet" -interleave -nocheck
+Log-DebugLine "CAPTURE 6:"
 
         if ($result.exitcode -eq 1 -and $result.stderr.Contains("[rejected]") -and $result.stderr.Contains("(fetch first)"))
         {
+Log-DebugLine "CAPTURE 7:"
             Invoke-CaptureStreams "git pull --quiet" | Out-Null
+Log-DebugLine "CAPTURE 8:"
             Invoke-CaptureStreams "git push --quiet" | Out-Null
+Log-DebugLine "CAPTURE 9:"
         }
 
     Pop-Cwd | Out-Null
