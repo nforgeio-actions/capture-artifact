@@ -53,7 +53,7 @@ try
     }
 
     $utcNow       = [System.DateTime]::UtcNow
-    $timestamp    = $utcNow.ToString("yyyy-MM-ddThh_mm_ssZ")
+    $timestamp    = $utcNow.ToString("yyyy-MM-ddTHH_mm_ssZ")
     $targetFolder = [System.IO.Path]::Combine($naRoot, $folder)
     $targetName   = "$timestamp-$name"
     $targetPath   = [System.IO.Path]::Combine($targetFolder, $targetName)
@@ -115,9 +115,12 @@ Log-DebugLine "CAPTURE 9:"
     # Return the artifact URI
 
     Set-ActionOutput "uri" "https://github.com/nforgeio/artifacts/blob/master/$folder/$targetName"
+Log-DebugLine "CAPTURE 10: $err"
 }
 catch
 {
-    Write-ActionException $_
+    $err = $_
+Log-DebugLine "CAPTURE 11: $err"
+    Write-ActionException $err
     exit 1
 }
