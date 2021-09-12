@@ -57,14 +57,19 @@ try
     $targetFolder = [System.IO.Path]::Combine($naRoot, $folder)
     $targetName   = "$timestamp-$name"
     $targetPath   = [System.IO.Path]::Combine($targetFolder, $targetName)
+Log-DebugLine "CAPTURE 0: path:         $path"
+Log-DebugLine "CAPTURE 0: targetFolder: $targetFolder"
+Log-DebugLine "CAPTURE 0: targetFolder: $targetFolder"
+Log-DebugLine "CAPTURE 0: targetPath:   $targetPath"
 
     # Here's what we're going to do:
     #
-    #   1. Pull the artifacts repo
-    #   2. Copy the file to the repo, creating the folder if necessary
-    #   3. Stage the changes 
-    #   4. Commit the change
-    #   5. Push the repo
+    #   1. Revert any pending changes in the artifacts repo
+    #   2. Pull the artifacts repo
+    #   3. Copy the file to the repo, creating the folder if necessary
+    #   4. Stage the changes 
+    #   5. Commit the change
+    #   6. Push the repo
 
     Push-Cwd $naRoot | Out-Null
 
@@ -73,8 +78,11 @@ try
         Invoke-CaptureStreams "git checkout --quiet master" | Out-Null    
         Invoke-CaptureStreams "git pull --quiet" | Out-Null
 
+Log-DebugLine "CAPTURE 1:"
         [System.IO.Directory]::CreateDirectory($targetFolder) | Out-Null
+Log-DebugLine "CAPTURE 2:"
         [System.IO.File]::Copy($path, $targetPath, $true) | Out-Null
+Log-DebugLine "CAPTURE 3:"
 
         Invoke-CaptureStreams "git add --all" | Out-Null
         Invoke-CaptureStreams "git commit --quiet --all --message `"capture artifact`"" | Out-Null
