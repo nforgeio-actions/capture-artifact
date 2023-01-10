@@ -8,13 +8,13 @@
 # formal written and signed agreement with neonFORGE, LLC.
 
 name: capture-artifact
-description: "Uploads a file to a folder in the nforgeio/artifacts repo, prefixing the file name with a UTC timestamp"
+description: "Uploads a file to a folder in the nforgeio/neon-artifacts repo, prefixing the file name with a UTC timestamp"
 inputs:
   path:
     description: "The local path to the file to be uploaded"
     required: true
   target-folder:
-    description: "Specifies target folder within the nforgeio/artifacts repo"
+    description: "Specifies target folder within the nforgeio/neon-artifacts repo"
     required: true
   target-name:
     description: "Optionally specifies the target file name within thr repo folder, overriding the local name"

@@ -60,8 +60,8 @@ try
 
     # Here's what we're going to do:
     #
-    #   1. Revert any pending changes in the artifacts repo
-    #   2. Pull the artifacts repo
+    #   1. Revert any pending changes in the neon-artifacts repo
+    #   2. Pull the neon-artifacts repo
     #   3. Copy the file to the repo, creating the folder if necessary
     #   4. Stage the changes 
     #   5. Commit the change
@@ -101,7 +101,7 @@ try
 
     # Return the artifact URI
 
-    Set-ActionOutput "uri" "https://github.com/nforgeio/artifacts/blob/master/$folder/$targetName"
+    Set-ActionOutput "uri" "https://github.com/nforgeio/neon-artifacts/blob/master/$folder/$targetName"
 }
 catch
 {

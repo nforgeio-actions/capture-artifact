@@ -2,7 +2,7 @@
 
 **INTERNAL USE ONLY:** This GitHub action is not intended for general use.  The only reason why this repo is public is because GitHub requires it.
 
-Uploads a file to a folder in the nforgeio/artifacts repo, prefixing the file name with a UTC timestamp.
+Uploads a file to a folder in the nforgeio/neon-artifacts repo, prefixing the file name with a UTC timestamp.
 
 ## Examples
 
